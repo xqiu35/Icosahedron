@@ -95,8 +95,7 @@ typedef struct triangle		// triangle
 typedef struct icosahedron	// icosahedron
 {
   Triangle* triangle;		// to be convinient for this lab, use dynamic allocation
-  ~icosahedron(){delete [] triangle;
-}
+  ~icosahedron(){delete [] triangle;}
 }Icosahedron;
 
 int testNumber; 		// Global variable indicating which test number is desired
