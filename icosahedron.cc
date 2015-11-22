@@ -33,6 +33,8 @@ static GLint tindices[NFACE][3] = {
    {7,10,3}, {7,6,10}, {7,11,6}, {11,0,6}, {0,1,6}, 
    {6,1,10}, {9,0,11}, {9,11,2}, {9,2,5}, {7,2,11} };
 
+/***************************** 3D point struct *******************************/
+
 typedef struct point3d
 {
   GLfloat x;
@@ -63,6 +65,8 @@ typedef struct point3d
 
 }Point3D;
 
+/********************** RGB struct, used to store color value *************************/
+
 typedef struct rgb
 {
 	GLfloat r,g,b;
@@ -70,6 +74,8 @@ typedef struct rgb
 	rgb(const rgb& _rgb):r(_rgb.r),g(_rgb.g),b(_rgb.b){}
 	rgb(const GLfloat& red,const GLfloat& green,const GLfloat& blue):r(red),g(green),b(blue){}
 }RGB;
+
+/************************** Trangle struct contains Vertex and RGB color *********************/
 
 typedef struct triangle		// triangle
 {
@@ -92,11 +98,15 @@ typedef struct triangle		// triangle
 
 }Triangle;
 
+/******************************* Icosahedron, contains muti traiangles ****************************/
+
 typedef struct icosahedron	// icosahedron
 {
   Triangle* triangle;		// to be convinient for this lab, use dynamic allocation
   ~icosahedron(){delete [] triangle;}
 }Icosahedron;
+
+/******************************* Variables and functions ***************************************/
 
 int testNumber; 		// Global variable indicating which test number is desired
 int depth;
@@ -104,16 +114,18 @@ int num_faces = 20;		// var num_faces, default to 20 faces
 Icosahedron icosahedron;	
 
 // routines
-void GLinit(int argc, char** argv);	// used for init GLUT stuff.....
-void reshape(int w, int h);		// callback reshape function
-void callback(int arg);			// timer call back for re-display
-void drawIcos();			// main draw function
+void GLinit(int argc, char** argv);			// used for init GLUT stuff.....
+void reshape(int w, int h);				// callback reshape function
+void callback(int arg);					// timer call back for re-display
+void drawIcos();					// main draw function
 void icosInit(Icosahedron&, const int& dep = 0);	// init icos
-void extend(Icosahedron&);		// extend function used for extending icos
+void extend(Icosahedron&);				// extend function used for extending icos
 
 // tests
 void Test1();
 void Test2();
+
+/******************************** Main function **************************************************/
 
 int main(int argc, char** argv)
 {
